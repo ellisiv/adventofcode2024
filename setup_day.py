@@ -2,46 +2,33 @@ from os import makedirs
 from sys import argv
 from data_downloader import download_and_save_data, get_file_name
 
-task1_content = """
-def solve_first_task(file):
-    pass
+
+def write_task_content(day: int, task: int):
+    task_str = "first" if task == 1 else "second"
+    return (
+        f"""
+            def solve_{task_str}_task(file):
+                pass
 
 
-def main():
-    data = open("day2/test_data.txt", "r")
+            def main():
+                data = open("day{day}/test_data.txt", "r")
 
-    solution = solve_first_task(data)
-    print("Solution first task: ", solution)
+                solution = solve_{task_str}_task(data)
+                print("Solution {task_str} task: ", solution)
 
-    data.close()
-
-
-if __name__ == "__main__":
-    main()
-"""
-
-task2_content = """
-def solve_second_task(file):
-    pass
+                data.close()
 
 
-def main():
-    data = open("day2/test_data.txt", "r")
-
-    solution = solve_second_task(data)
-    print("Solution second task: ", solution)
-
-    data.close()
-
-
-if __name__ == "__main__":
-    main()
-"""
+            if __name__ == "__main__":
+                main()
+            """
+    )
 
 
 def setup_task_file(day, task):
     file_name = "task1.py" if task == 1 else "task2.py"
-    content = task1_content if task == 1 else task2_content
+    content = write_task_content(day, task) if task == 1 else write_task_content(day, task)
     task1_file = open(f"day{day}/python_solution/{file_name}", "w+")
     task1_file.write(content)
     task1_file.close()

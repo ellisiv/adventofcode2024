@@ -6,8 +6,6 @@ def solve_second_task(file):
         first_number, second_number = line.split()
         list_of_first_numbers.append(int(first_number.strip()))
         list_of_second_numbers.append(int(second_number.strip()))
-    # list_of_first_numbers.sort()
-    # list_of_second_numbers.sort()
     solution = 0
     for number in set(list_of_first_numbers):
         solution += (number * list_of_first_numbers.count(number) * list_of_second_numbers.count(number))
